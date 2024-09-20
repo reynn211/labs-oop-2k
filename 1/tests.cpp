@@ -42,6 +42,12 @@ TEST(EliminateUnsetBitsTest, AllZeros) {
     EXPECT_EQ(result, 0);
 }
 
+TEST(EliminateUnsetBitsTest, InvalidInput) {
+    std::string input = "1234567";
+
+    EXPECT_THROW(eliminate_unset_bits(input), std::invalid_argument);
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
