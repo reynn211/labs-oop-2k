@@ -1,12 +1,12 @@
 #ifndef BITSTRING_H
 #define BITSTRING_H
 
-#include <string>
+#include <cstddef>
 
 class BitString {
 public:
     BitString();
-    BitString(const std::string& t);
+    BitString(const unsigned char* t);
     BitString(const BitString& other);
     BitString(BitString&& other) noexcept;
     virtual ~BitString() noexcept;
@@ -29,11 +29,16 @@ public:
     BitString operator~() const;
 
     size_t size() const;
-    char get(size_t index) const;
-    void set(size_t index, char value);
+    unsigned char get(size_t index) const;
+    void set(size_t index, unsigned char value);
+    bool isValidBitString(const unsigned char* str, size_t len);
 
 private:
-    std::string data;
+    unsigned char* data;
+    size_t length;
+
+    void allocate(size_t size);
+    void deallocate();
 };
 
 #endif
