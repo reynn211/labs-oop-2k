@@ -5,23 +5,7 @@
 template<Scalar T>
 class Trapezoid : public Figure<T> {
 public:
-    Trapezoid() {
-        for (size_t i = 0; i < 4; ++i) {
-            this->vertices_.push_back(std::make_unique<Point<T>>(0, 0));
-        }
-    }
-    
-    Trapezoid(const Trapezoid& other) : Figure<T>(other) {}
-    
-    Trapezoid& operator=(const Trapezoid& other) {
-        Figure<T>::operator=(other);
-        return *this;
-    }
-    
-    Trapezoid& operator=(Trapezoid&& other) noexcept {
-        Figure<T>::operator=(std::move(other));
-        return *this;
-    }
+    Trapezoid() : Figure<T>(4) {}
     
     std::unique_ptr<Figure<T>> clone() const override {
         auto new_trapezoid = std::make_unique<Trapezoid<T>>();

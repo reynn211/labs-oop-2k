@@ -5,23 +5,7 @@
 template<Scalar T>
 class Rhombus : public Figure<T> {
 public:
-    Rhombus() {
-        for (size_t i = 0; i < 4; ++i) {
-            this->vertices_.push_back(std::make_unique<Point<T>>(0, 0));
-        }
-    }
-
-    Rhombus(const Rhombus& other) : Figure<T>(other) {}
-    
-    Rhombus& operator=(const Rhombus& other) {
-        Figure<T>::operator=(other);
-        return *this;
-    }
-    
-    Rhombus& operator=(Rhombus&& other) noexcept {
-        Figure<T>::operator=(std::move(other));
-        return *this;
-    }
+    Rhombus() : Figure<T>(4) {}
     
     std::unique_ptr<Figure<T>> clone() const override {
         auto new_rhombus = std::make_unique<Rhombus<T>>();

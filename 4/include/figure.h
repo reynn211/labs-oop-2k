@@ -11,10 +11,13 @@ protected:
     std::vector<std::unique_ptr<Point<T>>> vertices_;
 
 public:
-    Figure() = default;
+    Figure(size_t vertex_count = 0) {
+        for (size_t i = 0; i < vertex_count; ++i) {
+            vertices_.push_back(std::make_unique<Point<T>>(0, 0));
+        }
+    }
     
     Figure(const Figure& other) {
-        vertices_.reserve(other.vertices_.size());
         for (const auto& vertex : other.vertices_) {
             vertices_.push_back(std::make_unique<Point<T>>(vertex->x(), vertex->y()));
         }
@@ -30,7 +33,6 @@ public:
     Figure& operator=(const Figure& other) {
         if (this != &other) {
             vertices_.clear();
-            vertices_.reserve(other.vertices_.size());
             for (const auto& vertex : other.vertices_) {
                 vertices_.push_back(std::make_unique<Point<T>>(vertex->x(), vertex->y()));
             }

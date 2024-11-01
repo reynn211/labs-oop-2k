@@ -5,23 +5,7 @@
 template<Scalar T>
 class Pentagon : public Figure<T> {
 public:
-    Pentagon() {
-        for (size_t i = 0; i < 5; ++i) {
-            this->vertices_.push_back(std::make_unique<Point<T>>(0, 0));
-        }
-    }
-
-    Pentagon(const Pentagon& other) : Figure<T>(other) {}
-    
-    Pentagon& operator=(const Pentagon& other) {
-        Figure<T>::operator=(other);
-        return *this;
-    }
-    
-    Pentagon& operator=(Pentagon&& other) noexcept {
-        Figure<T>::operator=(std::move(other));
-        return *this;
-    }
+    Pentagon() : Figure<T>(5) {}
     
     std::unique_ptr<Figure<T>> clone() const override {
         auto new_pentagon = std::make_unique<Pentagon<T>>();
